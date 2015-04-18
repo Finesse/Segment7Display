@@ -38,12 +38,6 @@ Segment7Display::Segment7Display(int pData, int pClock, int pStrobe) {
 
 
 
-void Segment7Display::reset() {
-	reset(.5);
-}
-
-
-
 void Segment7Display::reset(float brightness) {
 	pinMode(pinData, OUTPUT);
 	pinMode(pinClock, OUTPUT);
