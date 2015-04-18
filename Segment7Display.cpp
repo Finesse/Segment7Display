@@ -21,11 +21,11 @@ const byte Segment7Display::charTable[] = {
 	0b0000000, 0b1110111, 0b0011111, 0b1001110, 0b0111101, 0b1001111, 0b1000111, 0b1011110,
 	0b0110111, 0b0110000, 0b0111000, 0b0000000, 0b0001110, 0b0000000, 0b0010101, 0b1111110,
 	0b1100111, 0b1110011, 0b0000101, 0b1011011, 0b0001111, 0b0111110, 0b0000000, 0b0000000,
-	0b0000000, 0b0110011, 0b0000000, 0b0000000, 0b0000000, 0b0000000, 0b0000000, 0b0001000,
+	0b0000000, 0b0110011, 0b1011011, 0b0000000, 0b0000000, 0b0000000, 0b0000000, 0b0001000,
 	0b0000000, 0b1110111, 0b0011111, 0b0001101, 0b0111101, 0b1001111, 0b1000111, 0b1011110,
 	0b0010111, 0b0010000, 0b0011000, 0b0000000, 0b0000110, 0b0000000, 0b0010101, 0b0011101,
 	0b1100111, 0b1110011, 0b0000101, 0b1011011, 0b0001111, 0b0011100, 0b0000000, 0b0000000,
-	0b0000000, 0b0111011, 0b0000000, 0b0000000, 0b0000000, 0b0000000, 0b0000000, 0b0000000
+	0b0000000, 0b0111011, 0b1011011, 0b0000000, 0b0000000, 0b0000000, 0b0000000, 0b0000000
 };
 
 
@@ -54,7 +54,7 @@ void Segment7Display::reset(float brightness) {
 	setDecode(false);
 	setShutdown(false);
 	setBrightness(brightness);
-	clearDigits();
+	clear();
 }
 
 
@@ -98,17 +98,17 @@ void Segment7Display::setBrightness(float brightness) {
 
 
 
-void Segment7Display::clearDigits() {
+void Segment7Display::clear() {
 	if(decodeModeOn)
 		setDecode(false);
 
 	for(int i = 0; i <= DIGITS_AMOUNT; ++i)
-		digitData(i, 0);
+		printByte(i, 0);
 }
 
 
 
-void Segment7Display::digitData(int digit, byte data) {
+void Segment7Display::printByte(int digit, byte data) {
 	if(digit >= 0 && digit < DIGITS_AMOUNT)
 		sendPacket(preparePacket(digit + 1, data));
 }
@@ -119,7 +119,7 @@ void Segment7Display::printChar(int digit, char symbol, boolean decimalPoint) {
 	if(decodeModeOn)
 		setDecode(false);
 
-	digitData(digit, char2byte(symbol, decimalPoint));
+	printByte(digit, char2byte(symbol, decimalPoint));
 }
 
 
@@ -146,34 +146,34 @@ void Segment7Display::printString(String str, byte align, boolean clearExcess, i
 		case ALIGN_LEFT:
 			if(clearExcess)
 				for(; i < offset; ++i)
-					digitData(DIGITS_AMOUNT - i - 1, 0);
+					printByte(DIGITS_AMOUNT - i - 1, 0);
 			else
 				i = offset;
 
 			for(int j = 0; j < bytesAmount; ++j) {
-				digitData(DIGITS_AMOUNT - i - 1, bytes[j]);
+				printByte(DIGITS_AMOUNT - i - 1, bytes[j]);
 				++i;
 			}
 
 			for(; i < DIGITS_AMOUNT; ++i)
-				digitData(DIGITS_AMOUNT - i - 1, 0);
+				printByte(DIGITS_AMOUNT - i - 1, 0);
 
 			break;
 
 		case ALIGN_RIGHT:
 			if(clearExcess)
 				for(; i < offset; ++i)
-					digitData(i, 0);
+					printByte(i, 0);
 			else
 				i = offset;
 
 			for(int j = 0; j < bytesAmount; ++j) {
-				digitData(i, bytes[bytesAmount - j - 1]);
+				printByte(i, bytes[bytesAmount - j - 1]);
 				++i;
 			}
 
 			for(; i < DIGITS_AMOUNT; ++i)
-				digitData(i, 0);
+				printByte(i, 0);
 
 			break;
 	}
