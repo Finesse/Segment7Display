@@ -93,23 +93,25 @@ void Segment7Display::setBrightness(float brightness) {
 
 
 void Segment7Display::clear() {
-	if(decodeModeOn)
-		setDecode(false);
-
-	for(int i = 0; i <= DIGITS_AMOUNT; ++i)
-		printByte(i, 0);
+	if(decodeModeOn) {
+		for(int i = 0; i <= DIGITS_AMOUNT; ++i)
+			printByte(i, 0x0f);
+	} else {
+		for(int i = 0; i <= DIGITS_AMOUNT; ++i)
+			printByte(i, 0);
+	}
 }
 
 
 
-void Segment7Display::printByte(int digit, byte data) {
+void Segment7Display::printByte(byte digit, byte data) {
 	if(digit >= 0 && digit < DIGITS_AMOUNT)
 		sendPacket(preparePacket(digit + 1, data));
 }
 
 
 
-void Segment7Display::printChar(int digit, char symbol, boolean decimalPoint) {
+void Segment7Display::printChar(byte digit, char symbol, boolean decimalPoint) {
 	if(decodeModeOn)
 		setDecode(false);
 
