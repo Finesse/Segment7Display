@@ -92,6 +92,19 @@ class Segment7Display {
 		*/
 		void printString(String str, byte align = ALIGN_RIGHT, boolean clearExcess = true, int offset = 0, int maxLength = -1);
 
+		/*
+			Выводит на экран число с плавающей точкой. После выполнения этой функции режим декодирования будет выключен.
+			Параметры:
+				num — число, которое нужно вывести;
+				precision – количество цифр после запятой;
+				E — выводить ли число в экспоненциальной форме;
+				align — сторона, к которой примыкает строка. Возможные варианты располагаются в константах ALIGN_* этого класса;
+				clearExcess — очистить блоки цифр, не участвующие в написании этой строки;
+				offset - сдвиг строки относительно прилегаемого края;
+				maxLength — максимальная длина строки. Если указать значение меньше нуля, то ограничения по длине не будет;
+		*/
+		void printFloat(float num, unsigned char precision = 2, boolean E = false, byte align = ALIGN_RIGHT, boolean clearExcess = true, int offset = 0, int maxLength = -1);
+
 	protected:
 		/*
 			Переменные для запоминания пинов. Какие за что отвечают, смотрите в описании Segment7Display.

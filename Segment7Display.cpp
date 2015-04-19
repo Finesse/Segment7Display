@@ -177,6 +177,38 @@ void Segment7Display::printString(String str, byte align, boolean clearExcess, i
 
 
 
+void Segment7Display::printFloat(float num, unsigned char precision, boolean E, byte align, boolean clearExcess, int offset, int maxLength) {
+	if(offset > DIGITS_AMOUNT)
+		offset = DIGITS_AMOUNT;
+
+	if(maxLength < 0)
+		maxLength = DIGITS_AMOUNT - offset;
+	else
+		maxLength = min(DIGITS_AMOUNT - offset, maxLength);
+
+	char *str = new char[maxLength];
+
+	if(E) {
+		dtostre(num, str, precision, 0x04);
+		for(int i = 0; i < maxLength - 1; ++i)
+			if(str[i] == 'E') {
+				if(str[++i] == '+') {
+					for(; i < maxLength - 1; ++i)
+						str[i] = str[i + 1];
+					str[i] = 0;
+				}
+				break;
+			}
+	} else
+		dtostrf(num, 1, precision, str);
+
+	printString(str, align, clearExcess, offset, maxLength);
+
+	delete str;
+}
+
+
+
 byte Segment7Display::char2byte(char symbol, boolean decimalPoint) {
 	byte data = 0;
 	if(symbol >= 0 && symbol < CHARS_AMOUNT)
