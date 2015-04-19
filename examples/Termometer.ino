@@ -1,5 +1,17 @@
 /*
 Выводит на индикаторе температуру.
+
+Схема датчика температуры:
+
+(+E)
+  │
+ [R]
+  ├───(A0)
+ [T]
+  │
+  ¯
+ Где [R] — резистор на 10кОм, [T] — термистор B57164-K 103-J (10кОм при 25 градусах).
+
 */
 
 #include <Segment7Display.h>
@@ -39,7 +51,7 @@ void loop() {
   temperature /= TEMP_AMOUNT;
   
   // Вывод температуры на экран
-  led.printString(String(temperature));
+  led.printFloat(temperature, 1);
   
   delay(50);
 }
