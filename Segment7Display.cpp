@@ -54,7 +54,7 @@ void Segment7Display::reset(float brightness) {
 
 
 void Segment7Display::setTest(boolean on) {
-	sendPacket(preparePacket(0b1111, on));
+	sendPackage(preparePackage(0b1111, on));
 }
 
 
@@ -64,20 +64,20 @@ void Segment7Display::setDigitsAmount(int amount) {
 		amount = 1;
 	else if(amount > DIGITS_AMOUNT)
 		amount = DIGITS_AMOUNT;
-	sendPacket(preparePacket(0b1011, amount - 1));
+	sendPackage(preparePackage(0b1011, amount - 1));
 }
 
 
 
 void Segment7Display::setDecode(boolean on) {
-	sendPacket(preparePacket(0b1001, on));
+	sendPackage(preparePackage(0b1001, on));
 	decodeModeOn = on;
 }
 
 
 
 void Segment7Display::setShutdown(boolean on) {
-	sendPacket(preparePacket(0b1100, !on));
+	sendPackage(preparePackage(0b1100, !on));
 }
 
 
@@ -87,7 +87,7 @@ void Segment7Display::setBrightness(float brightness) {
 		brightness = 0;
 	else if(brightness > 1)
 		brightness = 1;
-	sendPacket(preparePacket(0b1010, mapNormal(brightness, 0, 1, BRIGHTNESS_MIN, BRIGHTNESS_MAX)));
+	sendPackage(preparePackage(0b1010, mapNormal(brightness, 0, 1, BRIGHTNESS_MIN, BRIGHTNESS_MAX)));
 }
 
 
@@ -106,7 +106,7 @@ void Segment7Display::clear() {
 
 void Segment7Display::printByte(byte digit, byte data) {
 	if(digit >= 0 && digit < DIGITS_AMOUNT)
-		sendPacket(preparePacket(digit + 1, data));
+		sendPackage(preparePackage(digit + 1, data));
 }
 
 
@@ -221,7 +221,7 @@ byte Segment7Display::char2byte(char symbol, boolean decimalPoint) {
 
 
 
-unsigned int Segment7Display::string2bytes(String str, byte *output, int maxLength, byte align) {
+unsigned int Segment7Display::string2bytes(String str, byte* output, int maxLength, byte align) {
 	int strLen = str.length(),
 		strPos;
 	byte temp;
@@ -287,16 +287,16 @@ unsigned int Segment7Display::string2bytes(String str, byte *output, int maxLeng
 
 
 
-word Segment7Display::preparePacket(byte comand, byte data) {
-	return (word)data | ((word)(comand & 0x0f) << 8);
+word Segment7Display::preparePackage(byte command, byte data) {
+	return (word)data | ((word)(command & 0x0f) << 8);
 }
 
 
 
-void Segment7Display::sendPacket(word packet) {
+void Segment7Display::sendPackage(word package) {
 	digitalWrite(pinStrobe, LOW);
-	shiftOut(pinData, pinClock, MSBFIRST, packet >> 8);
-	shiftOut(pinData, pinClock, MSBFIRST, packet);
+	shiftOut(pinData, pinClock, MSBFIRST, package >> 8);
+	shiftOut(pinData, pinClock, MSBFIRST, package);
 	digitalWrite(pinStrobe, HIGH);
 }
 

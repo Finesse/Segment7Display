@@ -166,7 +166,7 @@ Prints text string. Only symbols listed in [printChar](#printchar) method docume
 
 Parameters:
 * `String str` String to print
-* `byte align` String align. Possible variants are listen in static cinstants [ALIGN_*](#align_) of this class. Default: right side.
+* `byte align` String align. Possible variants are listen in static constants [ALIGN_*](#align_) of this class. Default: right side.
 * `boolean clearExcess` Whether to clear indicators not participating in printing of current text string. Default: yes.
 * `int offset` Offset from alinging side. Measures in amount of indicators. Default: no offset.
 * `int maxLength` Maximum text string length. If below 0 there is no constraint. Default: no constraint.
@@ -182,7 +182,7 @@ Parameters:
 * `float num` Number to print
 * `unsigned char precision` Amount of digits after decimal point. Negative values are allowed. Default: 2.
 * `boolean E` true — print in exponent form; false — print in usual form. Default: usual.
-* `byte align` String align. Possible variants are listen in static cinstants [ALIGN_*](#align_) of this class. Default: right side.
+* `byte align` String align. Possible variants are listen in static constants [ALIGN_*](#align_) of this class. Default: right side.
 * `boolean clearExcess` Whether to clear indicators not participating in printing of current text string. Default: yes.
 * `int offset` Offset from alinging side. Measures in amount of indicators. Default: no offset.
 * `int maxLength` Maximum text string length. If below 0 there is no constraint. Default: no constraint.
@@ -192,7 +192,7 @@ Parameters:
 
 ### ALIGN_*
 
-Used in to point text alignment methods [printString](#printstring) and [printFloat](#printfloat).
+Used in to point text alignment in methods [printString](#printstring) and [printFloat](#printfloat).
 
 * `ALIGN_LEFT` Text string alignes to left side. Excess symbols are cut from right side.
 * `ALIGN_RIGHT` Text string alignes to right side. Excess symbols are cut from left side.
