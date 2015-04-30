@@ -2,7 +2,7 @@ Documentation on languages: [english](README.md), [русский](README-RU.md)
 
 # What is it?
 
-This is Arduino library for controlling seven-segments indicator blocks and LED matrixes based on MAX7219. Perhaps it works with other devices.
+This is Arduino library for controlling seven-segment indicators blocks and LED matrixes based on MAX7219. Perhaps it works with other devices.
 
 
 # How to insall
