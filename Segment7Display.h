@@ -1,6 +1,8 @@
 /*
 	This is Arduino library for controlling seven-segments indicator blocks and LED matrixes based on MAX7219. Perhaps it works with other devices.
 
+	1.0
+
 	http://github.com/FinesseRus/Segment7Display
 */
 
