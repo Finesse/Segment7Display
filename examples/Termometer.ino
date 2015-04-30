@@ -1,17 +1,16 @@
 /*
-Выводит на индикаторе температуру.
+  Prints temperature in Celsius degrees.
 
-Схема датчика температуры:
+  Temperature sensor circuit:
 
-(+E)
-  │
- [R]
-  ├───(A0)
- [T]
-  │
-  ¯
- Где [R] — резистор на 10кОм, [T] — термистор B57164-K 103-J (10кОм при 25 градусах).
-
+  (+E)
+    │
+   [R]
+    ├───(A0)
+   [T]
+    │
+    ¯
+   Where [R] — resistor on 10kOm, [T] — termistor B57164-K 103-J (10kOm on 25°C).
 */
 
 #include <Segment7Display.h>
@@ -24,7 +23,7 @@
 #define TEMP_AMOUNT 10
 Segment7Display led(DIN, CLK, LOAD);
 
-// Чтобы цифры на дисплее постоянно не менялись от флуктуации температуры, сохряняем несколько последних измерений и вычисляем их среднее
+// Saving few last temperature measuring to smooth temperature wobbling
 float temperatures[TEMP_AMOUNT];
 
 void setup() {
@@ -35,22 +34,22 @@ void setup() {
 }
 
 void loop() {
-  // Определение текущей температуры
+  // Getting current temperature
   float voltage = analogRead(TERMOMETER_PIN) * 5.0 / 1023.0;
   float temperature = 1.0 / (log(voltage / 2.5) / 4300.0 + 1.0 / 298.0) - 273.0;
   
-  // Добавление температуры в массив последних температур
+  // Adding current temperature to last temperatures list
   for(int i = TEMP_AMOUNT - 1; i > 0; --i)
     temperatures[i] = temperatures[i - 1];
   temperatures[0] = temperature;
   
-  // Вычисление средней температуры
+  // Calculating avarage temperature
   temperature = 0;
   for(int i = 0; i < TEMP_AMOUNT; ++i)
     temperature += temperatures[i];
   temperature /= TEMP_AMOUNT;
   
-  // Вывод температуры на экран
+  // Printing temperature
   led.printFloat(temperature, 1);
   
   delay(50);

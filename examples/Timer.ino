@@ -1,5 +1,5 @@
 /*
-Выводит количество секунд, прошедших с начала работы
+	Prints amount of seconds that passed from moment when Arduino started
 */
 
 #include <Segment7Display.h>

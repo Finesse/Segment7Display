@@ -1,6 +1,6 @@
 /*
-Демонстрирует на индикаторе то, что пришло через последовательный порт.
-Сообщения разделяются переносом строки.
+  Prints serial port messages.
+  Messages are separated by new line.
 */
 
 #include <Segment7Display.h>
