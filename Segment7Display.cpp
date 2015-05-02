@@ -174,7 +174,7 @@ void Segment7Display::printString(String str, byte align, boolean clearExcess, i
 			break;
 	}
 
-	delete bytes;
+	delete []bytes;
 }
 
 
@@ -206,7 +206,7 @@ void Segment7Display::printFloat(float num, unsigned char precision, boolean E, 
 
 	printString(str, align, clearExcess, offset, maxLength);
 
-	delete str;
+	delete []str;
 }
 
 
