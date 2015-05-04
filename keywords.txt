@@ -1,0 +1,14 @@
+Segment7Display	KEYWORD1
+ALIGN_LEFT	LITERAL1
+ALIGN_RIGHT	LITERAL1
+reset	KEYWORD2
+setTest	KEYWORD2
+setDigitsAmount	KEYWORD2
+setDecode	KEYWORD2
+setShutdown	KEYWORD2
+setBrightness	KEYWORD2
+clear	KEYWORD2
+printByte	KEYWORD2
+printChar	KEYWORD2
+printString	KEYWORD2
+printFloat	KEYWORD2
