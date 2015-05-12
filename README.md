@@ -5,7 +5,7 @@ Documentation on languages: [english](README.md), [русский](README-RU.md)
 This is Arduino library for controlling seven-segment indicators blocks and LED matrixes based on MAX7219. Perhaps it works with other devices.
 
 
-# How to insall
+# How to install
 
 1. Download. Click "Download ZIP" on the right side to do it.
 2. Install. In Arduino IDE: top menu — Sketch — Import Library... — Add Library — choose downloaded ZIP or library directory.

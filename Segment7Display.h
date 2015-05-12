@@ -9,8 +9,18 @@
 
 
 
-#pragma once
-#include <Arduino.h>
+#ifndef Segment7Display_h
+#define Segment7Display_h
+
+
+
+#if defined(ARDUINO) && ARDUINO >= 100
+  #include <Arduino.h>
+#else
+  #include <WProgram.h>
+#endif 
+
+
 
 class Segment7Display {
 	public:
@@ -202,3 +212,7 @@ class Segment7Display {
 		*/
 		static unsigned int string2bytes(String str, byte* output, int maxLength, byte align = ALIGN_RIGHT);
 };
+
+
+
+#endif
