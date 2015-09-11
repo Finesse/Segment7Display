@@ -234,7 +234,7 @@ unsigned int Segment7Display::string2bytes(String str, byte* output, int maxLeng
 			pointTaken = true;
 
 			for(; strPos < strLen && length < maxLength; ++strPos)
-				if(str[strPos] == '.') {
+				if(str[strPos] == '.' || str[strPos] == ',') {
 					if(pointTaken) {
 						output[length] = 0x80;
 						++length;
@@ -255,7 +255,7 @@ unsigned int Segment7Display::string2bytes(String str, byte* output, int maxLeng
 			pointTaken = false;
 
 			for(; strPos >= 0 && length < maxLength; --strPos)
-				if(str[strPos] == '.') {
+				if(str[strPos] == '.' || str[strPos] == ',') {
 					if(pointTaken) {
 						output[length] = 0x80;
 						++length;

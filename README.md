@@ -23,7 +23,7 @@ This is Arduino library for controlling seven-segment indicators blocks and LED 
 	Segment7Display display(PIN_DIN, PIN_CLK, PIN_CS);
 
 	void setup() {
-		// For proper display operation this method showld be called after Arduino initialisation
+		// For proper display operation this method should be called after Arduino initialisation
 		display.reset();
 	}
 
