@@ -198,6 +198,6 @@ Used in to point text alignment in methods [printString](#printstring) and [prin
 * `ALIGN_RIGHT` Text string alignes to right side. Excess symbols are cut from left side.
 
 
-# Licence
+# License
 
 MIT (do anything you want).
