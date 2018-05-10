@@ -16,34 +16,44 @@ This is Arduino library for controlling seven-segment indicators blocks and LED 
 
 #### Initialisation
 
-	#include <Segment7Display.h>
-	#define PIN_DIN 2	// Data pin
-	#define PIN_CLK 3	// Clock pin
-	#define PIN_CS 4	// Strobe pin
-	Segment7Display display(PIN_DIN, PIN_CLK, PIN_CS);
+```c++
+#include <Segment7Display.h>
+#define PIN_DIN 2	// Data pin
+#define PIN_CLK 3	// Clock pin
+#define PIN_CS 4	// Strobe pin
+Segment7Display display(PIN_DIN, PIN_CLK, PIN_CS);
 
-	void setup() {
-		// For proper display operation this method should be called after Arduino initialisation
-		display.reset();
-	}
+void setup() {
+	// For proper display operation this method should be called after Arduino initialisation
+	display.reset();
+}
+```
 
 #### Set indicator state
 	
-	// "Tabby" state is set to second right indicator
-	display.printData(1, 0b10101010);
+```c++
+// "Tabby" state is set to second right indicator
+display.printData(1, 0b10101010);
+```
 
 #### Symbol printing
 
-	display.printChar(1, 't');
+```c++
+display.printChar(1, 't');
+```
 
 #### Text string printing
-	
-	display.printString("HELLO");
+
+```c++	
+display.printString("HELLO");
+```
 
 #### Float number printing
-	
-	// Only 1 digit left after decimal point
-	display.printFloat(123.456, 1);
+
+```c++
+// Only 1 digit left after decimal point
+display.printFloat(123.456, 1);
+```
 
 
 # API
@@ -52,7 +62,9 @@ This is Arduino library for controlling seven-segment indicators blocks and LED 
 
 #### Constructor
 
-	Segment7Display(int pData, int pClock, int pStrobe)
+```c++
+Segment7Display(int pData, int pClock, int pStrobe)
+```
 
 Parameters:
 * `int pData` Number of data pin (DIN)
@@ -62,7 +74,9 @@ Parameters:
 
 #### reset
 
-	void reset(float brightness = 1)
+```c++
+void reset(float brightness = 1)
+```
 
 Reset all chip parameters to normal state. This method should be called in or after executing of Arduino `setup` function. Otherwise there is great possibility of indicators incorrect behaviour.
 
@@ -72,7 +86,9 @@ Parameters:
 
 #### setTest
 
-	void setTest(boolean on)
+```c++
+void setTest(boolean on)
+```
 
 Turns on/off segments test mode. In test mode each LED legment is turned on with maximum brightness.
 
@@ -82,7 +98,9 @@ Parameters:
 
 #### setDigitsAmount
 
-	void setDigitsAmount(int amount)
+```c++
+void setDigitsAmount(int amount)
+```
 
 Sets amount of used indicators (digits).
 	
@@ -92,7 +110,9 @@ Parameters:
 
 #### setDecode
 
-	void setDecode(boolean on)
+```c++
+void setDecode(boolean on)
+```
 
 Turns on/off chip decode mode.
 
@@ -106,7 +126,9 @@ Parameters:
 
 #### setShutdown
 
-	void setShutdown(boolean on)
+```c++
+void setShutdown(boolean on)
+```
 
 Turns on/off sleep mode.
 
@@ -116,7 +138,9 @@ Parameters:
 
 #### setBrightness
 
-	void setBrightness(float brightness)
+```c++
+void setBrightness(float brightness)
+```
 
 Set LEDs brightness. 
 
@@ -126,14 +150,18 @@ Parameters:
 
 #### clear
 
-	void clear()
+```c++
+void clear()
+```
 
 Turns all LEDs off.
 
 
 #### printByte
 
-	void printByte(byte digit, byte data)
+```c++
+void printByte(byte digit, byte data)
+```
 
 Sets indicator state. Which segments (LEDs) are turned on depends on whether decode mode is on.
 
@@ -148,7 +176,9 @@ Parameters:
 
 #### printChar
 
-	void printChar(byte digit, char symbol, boolean decimalPoint = false)
+```c++
+void printChar(byte digit, char symbol, boolean decimalPoint = false)
+```
 
 Prints symbol in segment. Displayable symbols: `0 1 2 3 4 5 6 7 8 9 A b C c d E F G H h I i J j L l n O o p q r S t U u Y y Z . -`, other symbols are replaced by space. Letters that are not in that list but available in other case are replaced by other case. On exetuting of this method decode mode is turned off.
 
@@ -160,7 +190,9 @@ Parameters:
 
 #### printString
 
-	void printString(String str, byte align = ALIGN_RIGHT, boolean clearExcess = true, int offset = 0, int maxLength = -1)
+```c++
+void printString(String str, byte align = ALIGN_RIGHT, boolean clearExcess = true, int offset = 0, int maxLength = -1)
+```
 
 Prints text string. Only symbols listed in [printChar](#printchar) method documentation are displayed, other are replaced by space. On exetuting of this method decode mode is turned off.
 
@@ -174,7 +206,9 @@ Parameters:
 
 #### printFloat
 
-	void printFloat(float num, unsigned char precision = 2, boolean E = false, byte align = ALIGN_RIGHT, boolean clearExcess = true, int offset = 0, int maxLength = -1)
+```c++
+void printFloat(float num, unsigned char precision = 2, boolean E = false, byte align = ALIGN_RIGHT, boolean clearExcess = true, int offset = 0, int maxLength = -1)
+```
 
 Prints float number. On exetuting of this method decode mode is turned off.
 
