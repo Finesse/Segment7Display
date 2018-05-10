@@ -3,7 +3,7 @@
 
 	1.0
 
-	http://github.com/FinesseRus/Segment7Display
+	http://github.com/Finesse/Segment7Display
 */
 
 
