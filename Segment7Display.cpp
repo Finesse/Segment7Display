@@ -191,7 +191,7 @@ void Segment7Display::printFloat(float num, unsigned char precision, boolean E, 
 	char *str = new char[maxLength];
 
 	if(E) {
-		dtostre(num, str, precision, 0x04);
+		dtostre(num, str, precision, DTOSTR_UPPERCASE);
 		for(int i = 0; i < maxLength - 1; ++i)
 			if(str[i] == 'E') {
 				if(str[++i] == '+') {
